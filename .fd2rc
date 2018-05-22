@@ -1,0 +1,53 @@
+# configurations by customizer
+
+# shell variables definition
+SORTTYPE=101
+DISPLAYMODE=7
+INHERITCOPY=1
+PROGRESSBAR=1
+PRECOPYMENU=1
+ADJTTY=1
+SIZEUNIT=1
+SECOND=1
+ANSICOLOR=1
+TMPDIR=/home/iuser
+TMPUMASK=077
+LANGUAGE=ja_JP.UTF-8
+DEFKCODE=utf8-iconv
+INPUTKCODE=ja_JP.UTF-8
+PTYINKCODE=utf8-iconv
+PTYOUTKCODE=utf8-iconv
+FNAMEKCODE=ja_JP.UTF-8
+URLKCODE=utf8-iconv
+PAGER=less
+EDITOR=vim
+SHELL=/bin/bash
+
+# launcher definition
+launch .zip	"unzip -lqq"	-f " %s %m-%d-%y %t %*f"
+launch .Z	"zcat %C|"
+launch .gz	"gzip -cd %C|"
+launch .bz2	"bzip2 -cd %C|"
+launch .deb	"ar p %C data.tar.gz|gzip -dc|tar tvf - "	-f "%a %u/%g %s %y-%m-%d %t %f"
+launch .rpm	"rpm2cpio %C|cpio -tv"	-f "%a %x %u %g %s %m %d %y %f"
+
+# archiver definition
+arch .zip	"zip -q %C %TA"	"unzip -q %C %TA"
+arch .deb	"clear; echo ERROR; false"	"ar p %C data.tar.gz|gzip -dc|tar -xf - %TA"
+arch .rpm	"clear; echo ERROR; false"	"rpm2cpio %C|cpio -id %TA"
+
+# additional configurations by customizer
+
+# shell variables definition
+TRADLAYOUT=0
+
+# additional configurations by customizer
+
+# key bind definition
+bind j	CUR_DOWN
+
+# additional configurations by customizer
+
+# key bind definition
+bind k	CUR_UP
+bind K	MAKE_DIR
