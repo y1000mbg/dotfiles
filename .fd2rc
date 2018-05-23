@@ -51,3 +51,13 @@ bind j	CUR_DOWN
 # key bind definition
 bind k	CUR_UP
 bind K	MAKE_DIR
+
+# additional configurations by customizer
+
+# key bind definition
+bind h	CUR_LEFT
+bind l	CUR_RIGHT
+bind H	OUT_DIR
+bind L	LAUNCH_FILE	IN_DIR
+bind X	EXECUTE_SH
+bind .	DOTFILE_MODE
