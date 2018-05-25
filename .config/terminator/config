@@ -1,0 +1,33 @@
+[global_config]
+  sticky = True
+[keybindings]
+  hide_window = F12
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = True
+      last_active_term = 3b65b202-ff1f-42f5-8a10-194148d06133
+      last_active_window = True
+      maximised = False
+      order = 0
+      parent = ""
+      position = 0:0
+      size = 1366, 768
+      title = y-shirai@x230: ~
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = default
+      type = Terminal
+      uuid = 3b65b202-ff1f-42f5-8a10-194148d06133
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.7
+    background_type = transparent
+    copy_on_selection = True
+    cursor_color = "#aaaaaa"
+    font = Ricty Diminished 19
+    show_titlebar = False
+    use_system_font = False
