@@ -151,3 +151,26 @@ function h2s (){
 	fi
 	echo "git clone ${1}" | sed -e s#https://github.com/#git@github.com:# -e "s#\$#.git#"
 }
+
+## 2018.06.07 add 
+## ディレクトリ内のファイルを連番にリネーム
+function numv () {
+	## ファイル数を求める
+	fcnt=$(( `ls -l | wc -l` - 1))
+	k=`echo -n $fcnt | wc -c`
+
+	## 0埋めしたファイル数までの連番を生成し配列へ格納
+	array=(`seq -f %0${k}g 1 $fcnt`)
+
+	## 繰り返しでリネーム
+	### fn ファイル名
+	### ext 拡張子（ドット以降）
+	### ls --color=nonはcygwinで端末制御コードが解釈されて動作がおかしくなるので無効化している
+	cnt=0
+	for fn in `ls --color=non`
+	do
+		ext=`echo $fn | cut -d"." -f2`
+		mv -v $fn ${array[$cnt]}.$ext
+		let cnt++
+	done
+}
