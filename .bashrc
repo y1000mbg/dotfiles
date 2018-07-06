@@ -174,3 +174,37 @@ function numv () {
 		let cnt++
 	done
 }
+eval "$(rbenv init -)"
+
+## 2018.07.03 add
+## githubの画像リポジトリからurl取得する
+function picurl () {
+  year=`echo $1 | cut -c1-4`
+  month=`echo $1 | cut -c5-6`
+  day=`echo $1 | cut -c7-8`
+  for num in `seq -f %03g $2 $3`
+  do
+    echo '<img src="https://github.com/y1000mbg/blog_pic/blob/master/'${year}'/'${month}'/'${day}'/'${num}'.png?raw=true" align="left">'
+    echo '<br style="clear:left;">'
+  done
+}
+
+alias nkfowl='nkf --overwrite -w -Lu'
+alias msd='mkdocs serve --dev-addr=` hostname -i | cut -d" " -f 1`:8000'
+alias gacp='git add --all && git commit -m"commit" && git push'
+
+function indexcreate () {
+  # tmpファイル初期化
+  echo -n > /tmp/filelist_1
+  echo -n > /tmp/filelist_2
+
+  # ファイル名からymd取得
+  grep -H "^# " *.md | cut -c 1-8 | gawk '{print "- "$0}' > /tmp/filelist_1
+  # 見出し1: ファイル名取得
+  grep -H "^# " *.md | gawk -F":" '{print $2":",$1}' | cut -c 3- > /tmp/filelist_2
+  echo "pagesへ追加してください"
+  paste -d"_" /tmp/filelist_1 /tmp/filelist_2
+  echo -e "---\\nカテゴリーへ追加してください"
+  # - [見出し1](ファイル名)取得
+  grep -H "^# " *.md | gawk -F":" '{print $2,$1}' | cut -c 3- | gawk '{print "- ["$1"]("$2")"}'
+}
